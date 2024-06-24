@@ -1,88 +1,81 @@
-## Appendix B: Operators and Symbols
+## ภาคผนวก B: ตัวดำเนินการและสัญลักษณ์
 
-This appendix contains a glossary of Rust’s syntax, including operators and
-other symbols that appear by themselves or in the context of paths, generics,
-trait bounds, macros, attributes, comments, tuples, and brackets.
+ภาคผนวกนี้ประกอบด้วยอภิธานศัพท์ของไวยากรณ์ Rust รวมถึงตัวดำเนินการและสัญลักษณ์อื่นๆ ที่ปรากฏโดยลำพังหรือในบริบทของพาธ เจเนริก ข้อจำกัดของเทรต มาโคร แอตทริบิวต์ คอมเม้นต์ ทูเพิล และวงเล็บ
 
-### Operators
+### ตัวดำเนินการ
 
-Table B-1 contains the operators in Rust, an example of how the operator would
-appear in context, a short explanation, and whether that operator is
-overloadable. If an operator is overloadable, the relevant trait to use to
-overload that operator is listed.
+ตาราง B-1 แสดงตัวดำเนินการใน Rust พร้อมตัวอย่างการใช้งาน คำอธิบายสั้นๆ และข้อมูลว่าสามารถโอเวอร์โหลดได้หรือไม่ หากตัวดำเนินการสามารถโอเวอร์โหลดได้ จะแสดงเทรตที่เกี่ยวข้องสำหรับการโอเวอร์โหลดด้วย
 
-<span class="caption">Table B-1: Operators</span>
+<span class="caption">ตาราง B-1: ตัวดำเนินการ</span>
 
-| Operator | Example | Explanation | Overloadable? |
+| ตัวดำเนินการ | ตัวอย่าง | คำอธิบาย | โอเวอร์โหลดได้หรือไม่? |
 |----------|---------|-------------|---------------|
-| `!` | `ident!(...)`, `ident!{...}`, `ident![...]` | Macro expansion | |
-| `!` | `!expr` | Bitwise or logical complement | `Not` |
-| `!=` | `expr != expr` | Nonequality comparison | `PartialEq` |
-| `%` | `expr % expr` | Arithmetic remainder | `Rem` |
-| `%=` | `var %= expr` | Arithmetic remainder and assignment | `RemAssign` |
-| `&` | `&expr`, `&mut expr` | Borrow | |
-| `&` | `&type`, `&mut type`, `&'a type`, `&'a mut type` | Borrowed pointer type | |
-| `&` | `expr & expr` | Bitwise AND | `BitAnd` |
-| `&=` | `var &= expr` | Bitwise AND and assignment | `BitAndAssign` |
-| `&&` | `expr && expr` | Short-circuiting logical AND | |
-| `*` | `expr * expr` | Arithmetic multiplication | `Mul` |
-| `*=` | `var *= expr` | Arithmetic multiplication and assignment | `MulAssign` |
-| `*` | `*expr` | Dereference | `Deref` |
-| `*` | `*const type`, `*mut type` | Raw pointer | |
-| `+` | `trait + trait`, `'a + trait` | Compound type constraint | |
-| `+` | `expr + expr` | Arithmetic addition | `Add` |
-| `+=` | `var += expr` | Arithmetic addition and assignment | `AddAssign` |
-| `,` | `expr, expr` | Argument and element separator | |
-| `-` | `- expr` | Arithmetic negation | `Neg` |
-| `-` | `expr - expr` | Arithmetic subtraction | `Sub` |
-| `-=` | `var -= expr` | Arithmetic subtraction and assignment | `SubAssign` |
-| `->` | `fn(...) -> type`, <code>&vert;...&vert; -> type</code> | Function and closure return type | |
-| `.` | `expr.ident` | Member access | |
-| `..` | `..`, `expr..`, `..expr`, `expr..expr` | Right-exclusive range literal | `PartialOrd` |
-| `..=` | `..=expr`, `expr..=expr` | Right-inclusive range literal | `PartialOrd` |
+| `!` | `ident!(...)`, `ident!{...}`, `ident![...]` | การขยายมาโคร | |
+| `!` | `!expr` | การกลับบิตหรือค่าตรรกะ | `Not` |
+| `!=` | `expr != expr` | การเปรียบเทียบการไม่เท่ากัน | `PartialEq` |
+| `%` | `expr % expr` | เศษจากการหาร | `Rem` |
+| `%=` | `var %= expr` | กำหนดค่าเศษจากการหาร | `RemAssign` |
+| `&` | `&expr`, `&mut expr` | การยืม | |
+| `&` | `&type`, `&mut type`, `&'a type`, `&'a mut type` | ประเภทตัวชี้ที่ยืมมา | |
+| `&` | `expr & expr` | AND แบบบิต | `BitAnd` |
+| `&=` | `var &= expr` | AND แบบบิตและการกำหนดค่า | `BitAndAssign` |
+| `&&` | `expr && expr` | AND ทางตรรกะแบบลัดวงจร | |
+| `*` | `expr * expr` | การคูณ | `Mul` |
+| `*=` | `var *= expr` | การคูณและการกำหนดค่า | `MulAssign` |
+| `*` | `*expr` | การดีรีเฟอเรนซ์ | `Deref` |
+| `*` | `*const type`, `*mut type` | ตัวชี้แบบดิบ | |
+| `+` | `trait + trait`, `'a + trait` | การรวมข้อจำกัดของเทรต | |
+| `+` | `expr + expr` | การบวก | `Add` |
+| `+=` | `var += expr` | การบวกและการกำหนดค่า | `AddAssign` |
+| `,` | `expr, expr` | ตัวคั่นอาร์กิวเมนต์และองค์ประกอบ | |
+| `-` | `- expr` | การลบเชิงเลขคณิต | `Neg` |
+| `-` | `expr - expr` | การลบ | `Sub` |
+| `-=` | `var -= expr` | การลบและการกำหนดค่า | `SubAssign` |
+| `->` | `fn(...) -> type`, <code>&vert;...&vert; -> type</code> | ประเภทการคืนค่าของฟังก์ชันและคลอสเซอร์ | |
+| `.` | `expr.ident` | การเข้าถึงสมาชิก | |
+| `..` | `..`, `expr..`, `..expr`, `expr..expr` | ช่วงแบบไม่รวมด้านขวา | `PartialOrd` |
+| `..=` | `..=expr`, `expr..=expr` | ช่วงแบบรวมด้านขวา | `PartialOrd` |
 | `..` | `..expr` | Struct literal update syntax | |
 | `..` | `variant(x, ..)`, `struct_type { x, .. }` | “And the rest” pattern binding | |
 | `...` | `expr...expr` | (Deprecated, use `..=` instead) In a pattern: inclusive range pattern | |
-| `/` | `expr / expr` | Arithmetic division | `Div` |
-| `/=` | `var /= expr` | Arithmetic division and assignment | `DivAssign` |
-| `:` | `pat: type`, `ident: type` | Constraints | |
+| `/` | `expr / expr` | การหาร | `Div` |
+| `/=` | `var /= expr` | การหารและการกำหนดค่า | `DivAssign` |
+| `:` | `pat: type`, `ident: type` | ข้อจำกัด | |
 | `:` | `ident: expr` | Struct field initializer | |
-| `:` | `'a: loop {...}` | Loop label | |
+| `:` | `'a: loop {...}` | ป้ายกำกับลูป | |
 | `;` | `expr;` | Statement and item terminator | |
 | `;` | `[...; len]` | Part of fixed-size array syntax | |
-| `<<` | `expr << expr` | Left-shift | `Shl` |
-| `<<=` | `var <<= expr` | Left-shift and assignment | `ShlAssign` |
-| `<` | `expr < expr` | Less than comparison | `PartialOrd` |
-| `<=` | `expr <= expr` | Less than or equal to comparison | `PartialOrd` |
-| `=` | `var = expr`, `ident = type` | Assignment/equivalence | |
-| `==` | `expr == expr` | Equality comparison | `PartialEq` |
+| `<<` | `expr << expr` | การเลื่อนบิตไปทางซ้าย | `Shl` |
+| `<<=` | `var <<= expr` | การเลื่อนบิตไปทางซ้ายและกำหนดค่า | `ShlAssign` |
+| `<` | `expr < expr` | การเปรียบเทียบการน้อยกว่า | `PartialOrd` |
+| `<=` | `expr <= expr` | การเปรียบเทียบการน้อยกว่าหรือเท่ากับ | `PartialOrd` |
+| `=` | `var = expr`, `ident = type` | การกำหนดค่า/ความเท่าเทียม | |
+| `==` | `expr == expr` | การเปรียบเทียบความเท่ากัน | `PartialEq` |
 | `=>` | `pat => expr` | Part of match arm syntax | |
-| `>` | `expr > expr` | Greater than comparison | `PartialOrd` |
-| `>=` | `expr >= expr` | Greater than or equal to comparison | `PartialOrd` |
-| `>>` | `expr >> expr` | Right-shift | `Shr` |
-| `>>=` | `var >>= expr` | Right-shift and assignment | `ShrAssign` |
+| `>` | `expr > expr` | การเปรียบเทียบการมากกว่า | `PartialOrd` |
+| `>=` | `expr >= expr` | การเปรียบเทียบการมากกว่าหรือเท่ากับ | `PartialOrd` |
+| `>>` | `expr >> expr` | การเลื่อนบิตไปทางขวา | `Shr` |
+| `>>=` | `var >>= expr` | การเลื่อนบิตไปทางขวาและกำหนดค่า | `ShrAssign` |
 | `@` | `ident @ pat` | Pattern binding | |
-| `^` | `expr ^ expr` | Bitwise exclusive OR | `BitXor` |
-| `^=` | `var ^= expr` | Bitwise exclusive OR and assignment | `BitXorAssign` |
-| <code>&vert;</code> | <code>pat &vert; pat</code> | Pattern alternatives | |
-| <code>&vert;</code> | <code>expr &vert; expr</code> | Bitwise OR | `BitOr` |
-| <code>&vert;=</code> | <code>var &vert;= expr</code> | Bitwise OR and assignment | `BitOrAssign` |
-| <code>&vert;&vert;</code> | <code>expr &vert;&vert; expr</code> | Short-circuiting logical OR | |
-| `?` | `expr?` | Error propagation | |
+| `^` | `expr ^ expr` | XOR แบบบิต | `BitXor` |
+| `^=` | `var ^= expr` | XOR แบบบิตและกำหนดค่า | `BitXorAssign` |
+| <code>&vert;</code> | <code>pat &vert; pat</code> | ทางเลือกของรูปแบบ | |
+| <code>&vert;</code> | <code>expr &vert; expr</code> | OR แบบบิต | `BitOr` |
+| <code>&vert;=</code> | <code>var &vert;= expr</code> | OR แบบบิตและกำหนดค่า | `BitOrAssign` |
+| <code>&vert;&vert;</code> | <code>expr &vert;&vert; expr</code> | OR ทางตรรกะแบบลัดวงจร | |
+| `?` | `expr?` | การส่งต่อข้อผิดพลาด | |
 
-### Non-operator Symbols
+### สัญลักษณ์ที่ไม่ใช่ตัวดำเนินการ
 
-The following list contains all symbols that don’t function as operators; that
-is, they don’t behave like a function or method call.
+รายการต่อไปนี้แสดงสัญลักษณ์ทั้งหมดที่ไม่ทำหน้าที่เป็นตัวดำเนินการ นั่นคือ ไม่ได้ทำงานเหมือนการเรียกฟังก์ชันหรือเมธอด
 
-Table B-2 shows symbols that appear on their own and are valid in a variety of
-locations.
+ตาราง B-2 แสดงสัญลักษณ์ที่ปรากฏโดยลำพังและใช้ได้ในหลายตำแหน่ง
 
-<span class="caption">Table B-2: Stand-Alone Syntax</span>
+<span class="caption">ตาราง B-2: ไวยากรณ์แบบสแตนด์อโลน</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
-| `'ident` | Named lifetime or loop label |
+| `'ident` | ชื่ออายุการใช้งานหรือป้ายกำกับลูป |
 | `...u8`, `...i32`, `...f64`, `...usize`, etc. | Numeric literal of specific type |
 | `"..."` | String literal |
 | `r"..."`, `r#"..."#`, `r##"..."##`, etc. | Raw string literal, escape characters not processed |
@@ -90,49 +83,46 @@ locations.
 | `br"..."`, `br#"..."#`, `br##"..."##`, etc. | Raw byte string literal, combination of raw and byte string literal |
 | `'...'` | Character literal |
 | `b'...'` | ASCII byte literal |
-| <code>&vert;...&vert; expr</code> | Closure |
+| <code>&vert;...&vert; expr</code> | คลอสเซอร์ |
 | `!` | Always empty bottom type for diverging functions |
 | `_` | “Ignored” pattern binding; also used to make integer literals readable |
 
-Table B-3 shows symbols that appear in the context of a path through the module
-hierarchy to an item.
+ตาราง B-3 แสดงสัญลักษณ์ที่ปรากฏในบริบทของพาธผ่านลำดับชั้นของโมดูลไปยังรายการ
 
-<span class="caption">Table B-3: Path-Related Syntax</span>
+<span class="caption">ตาราง B-3: ไวยากรณ์ที่เกี่ยวข้องกับพาธ</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
-| `ident::ident` | Namespace path |
-| `::path` | Path relative to the crate root (i.e., an explicitly absolute path) |
-| `self::path` | Path relative to the current module (i.e., an explicitly relative path). |
-| `super::path` | Path relative to the parent of the current module |
-| `type::ident`, `<type as trait>::ident` | Associated constants, functions, and types |
+| `ident::ident` | พาธของเนมสเปซ |
+| `::path` | พาธเทียบกับรากของเครต (i.e., an explicitly absolute path) |
+| `self::path` | พาธเทียบกับโมดูลปัจจุบัน (i.e., an explicitly relative path). |
+| `super::path` | พาธเทียบกับโมดูลแม่ของโมดูลปัจจุบัน |
+| `type::ident`, `<type as trait>::ident` | ค่าคงที่ ฟังก์ชัน และประเภทที่เกี่ยวข้อง |
 | `<type>::...` | Associated item for a type that cannot be directly named (e.g., `<&T>::...`, `<[T]>::...`, etc.) |
 | `trait::method(...)` | Disambiguating a method call by naming the trait that defines it |
 | `type::method(...)` | Disambiguating a method call by naming the type for which it’s defined |
 | `<type as trait>::method(...)` | Disambiguating a method call by naming the trait and type |
 
-Table B-4 shows symbols that appear in the context of using generic type
-parameters.
+ตาราง B-4 แสดงสัญลักษณ์ที่ปรากฏในบริบทของการใช้พารามิเตอร์ประเภทเจเนริก
 
-<span class="caption">Table B-4: Generics</span>
+<span class="caption">ตาราง B-4: เจเนริก</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
-| `path<...>` | Specifies parameters to generic type in a type (e.g., `Vec<u8>`) |
-| `path::<...>`, `method::<...>` | Specifies parameters to generic type, function, or method in an expression; often referred to as turbofish (e.g., `"42".parse::<i32>()`) |
-| `fn ident<...> ...` | Define generic function |
-| `struct ident<...> ...` | Define generic structure |
-| `enum ident<...> ...` | Define generic enumeration |
+| `path<...>` | ระบุพารามิเตอร์สำหรับประเภทเจเนริกในประเภท (e.g., `Vec<u8>`) |
+| `path::<...>`, `method::<...>` | ระบุพารามิเตอร์สำหรับประเภท ฟังก์ชัน หรือเมธอดเจเนริกในนิพจน์ มักเรียกว่า turbofish (เช่น  `"42".parse::<i32>()`) |
+| `fn ident<...> ...` | กำหนดฟังก์ชันเจเนริก |
+| `struct ident<...> ...` | กำหนดโครงสร้างเจเนริก |
+| `enum ident<...> ...` | กำหนดอีนัมเจเนริก |
 | `impl<...> ...` | Define generic implementation |
 | `for<...> type` | Higher-ranked lifetime bounds |
 | `type<ident=type>` | A generic type where one or more associated types have specific assignments (e.g., `Iterator<Item=T>`) |
 
-Table B-5 shows symbols that appear in the context of constraining generic type
-parameters with trait bounds.
+ตาราง B-5 แสดงสัญลักษณ์ที่ปรากฏในบริบทของการจำกัดพารามิเตอร์ประเภทเจเนริกด้วยข้อจำกัดของเทรต
 
-<span class="caption">Table B-5: Trait Bound Constraints</span>
+<span class="caption">ตาราง B-5: ข้อจำกัดของเทรต</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
 | `T: U` | Generic parameter `T` constrained to types that implement `U` |
 | `T: 'a` | Generic type `T` must outlive lifetime `'a` (meaning the type cannot transitively contain any references with lifetimes shorter than `'a`) |
@@ -141,62 +131,61 @@ parameters with trait bounds.
 | `T: ?Sized` | Allow generic type parameter to be a dynamically sized type |
 | `'a + trait`, `trait + trait` | Compound type constraint |
 
-Table B-6 shows symbols that appear in the context of calling or defining
-macros and specifying attributes on an item.
+ตาราง B-6 แสดงสัญลักษณ์ที่ปรากฏในบริบทของการเรียกหรือกำหนดมาโครและระบุแอตทริบิวต์บนรายการ
 
-<span class="caption">Table B-6: Macros and Attributes</span>
+<span class="caption">ตาราง B-6: มาโครและแอตทริบิวต์</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
-| `#[meta]` | Outer attribute |
-| `#![meta]` | Inner attribute |
-| `$ident` | Macro substitution |
+| `#[meta]` | แอตทริบิวต์ภายนอก |
+| `#![meta]` | แอตทริบิวต์ภายใน |
+| `$ident` | การแทนที่มาโคร |
 | `$ident:kind` | Macro capture |
 | `$(…)…` | Macro repetition |
 | `ident!(...)`, `ident!{...}`, `ident![...]` | Macro invocation |
 
-Table B-7 shows symbols that create comments.
+ตาราง B-7 แสดงสัญลักษณ์ที่ใช้สร้างคอมเม้นต์
 
-<span class="caption">Table B-7: Comments</span>
+<span class="caption">ตาราง B-7: คอมเม้นต์</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
-| `//` | Line comment |
-| `//!` | Inner line doc comment |
-| `///` | Outer line doc comment |
-| `/*...*/` | Block comment |
-| `/*!...*/` | Inner block doc comment |
-| `/**...*/` | Outer block doc comment |
+| `//` | คอมเม้นต์บรรทัดเดียว |
+| `//!` | คอมเม้นต์เอกสารภายในบรรทัดเดียว |
+| `///` | คอมเม้นต์เอกสารภายนอกบรรทัดเดียว |
+| `/*...*/` | คอมเม้นต์แบบบล็อก |
+| `/*!...*/` | คอมเม้นต์เอกสารภายในแบบบล็อก |
+| `/**...*/` | คอมเม้นต์เอกสารภายนอกแบบบล็อก |
 
-Table B-8 shows symbols that appear in the context of using tuples.
+ตาราง B-8 แสดงสัญลักษณ์ที่ปรากฏในบริบทของการใช้ทูเพิล
 
-<span class="caption">Table B-8: Tuples</span>
+<span class="caption">ตาราง B-8: ทูเพิล</span>
 
-| Symbol | Explanation |
+| สัญลักษณ์ | คำอธิบาย |
 |--------|-------------|
 | `()` | Empty tuple (aka unit), both literal and type |
-| `(expr)` | Parenthesized expression |
+| `(expr)` | นิพจน์ในวงเล็บ |
 | `(expr,)` | Single-element tuple expression |
 | `(type,)` | Single-element tuple type |
-| `(expr, ...)` | Tuple expression |
+| `(expr, ...)` | นิพจน์ทูเพิล |
 | `(type, ...)` | Tuple type |
 | `expr(expr, ...)` | Function call expression; also used to initialize tuple `struct`s and tuple `enum` variants |
 | `expr.0`, `expr.1`, etc. | Tuple indexing |
 
-Table B-9 shows the contexts in which curly braces are used.
+ตาราง B-9 แสดงบริบทที่ใช้วงเล็บปีกกา
 
-<span class="caption">Table B-9: Curly Brackets</span>
+<span class="caption">ตาราง B-9: วงเล็บปีกกา</span>
 
-| Context | Explanation |
+| บริบท | คำอธิบาย |
 |---------|-------------|
 | `{...}` | Block expression |
 | `Type {...}` | `struct` literal |
 
-Table B-10 shows the contexts in which square brackets are used.
+ตาราง B-10 แสดงบริบทที่ใช้วงเล็บเหลี่ยม
 
-<span class="caption">Table B-10: Square Brackets</span>
+<span class="caption">ตาราง B-10: วงเล็บเหลี่ยม</span>
 
-| Context | Explanation |
+| บริบท | คำอธิบาย |
 |---------|-------------|
 | `[...]` | Array literal |
 | `[expr; len]` | Array literal containing `len` copies of `expr` |
