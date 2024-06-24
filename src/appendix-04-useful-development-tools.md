@@ -1,42 +1,32 @@
-## Appendix D - Useful Development Tools
+## ภาคผนวก D - เครื่องมือการพัฒนาที่มีประโยชน์
 
-In this appendix, we talk about some useful development tools that the Rust
-project provides. We’ll look at automatic formatting, quick ways to apply
-warning fixes, a linter, and integrating with IDEs.
+ในภาคผนวกนี้ เราจะพูดถึงเครื่องมือการพัฒนาที่มีประโยชน์ซึ่งโครงการ Rust จัดเตรียมไว้ให้ เราจะดูเกี่ยวกับการจัดรูปแบบอัตโนมัติ วิธีการรวดเร็วในการแก้ไขคำเตือน เครื่องมือตรวจสอบโค้ด และการผสานรวมกับ IDE
 
-### Automatic Formatting with `rustfmt`
+### การจัดรูปแบบอัตโนมัติด้วย `rustfmt`
 
-The `rustfmt` tool reformats your code according to the community code style.
-Many collaborative projects use `rustfmt` to prevent arguments about which
-style to use when writing Rust: everyone formats their code using the tool.
+เครื่องมือ `rustfmt` จะจัดรูปแบบโค้ดของคุณตามรูปแบบโค้ดของชุมชน โครงการที่ทำงานร่วมกันหลายโครงการใช้ `rustfmt` เพื่อป้องกันการโต้เถียงเกี่ยวกับรูปแบบที่ควรใช้เมื่อเขียน Rust: ทุกคนจัดรูปแบบโค้ดของตนโดยใช้เครื่องมือนี้
 
-To install `rustfmt`, enter the following:
+เพื่อติดตั้ง `rustfmt` ให้ป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ rustup component add rustfmt
 ```
 
-This command gives you `rustfmt` and `cargo-fmt`, similar to how Rust gives you
-both `rustc` and `cargo`. To format any Cargo project, enter the following:
+คำสั่งนี้จะให้คุณได้ `rustfmt` และ `cargo-fmt` คล้ายกับที่ Rust ให้ทั้ง `rustc` และ `cargo` เพื่อจัดรูปแบบโครงการ Cargo ใดๆ ให้ป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ cargo fmt
 ```
 
-Running this command reformats all the Rust code in the current crate. This
-should only change the code style, not the code semantics. For more information
-on `rustfmt`, see [its documentation][rustfmt].
+การเรียกใช้คำสั่งนี้จะจัดรูปแบบโค้ด Rust ทั้งหมดในเครตปัจจุบัน สิ่งนี้ควรเปลี่ยนเฉพาะรูปแบบโค้ดเท่านั้น ไม่ใช่ความหมายของโค้ด สำหรับข้อมูลเพิ่มเติมเกี่ยวกับ `rustfmt` ดูได้ที่ [เอกสารประกอบ][rustfmt].
 
 [rustfmt]: https://github.com/rust-lang/rustfmt
 
-### Fix Your Code with `rustfix`
+### แก้ไขโค้ดของคุณด้วย `rustfix`
 
-The rustfix tool is included with Rust installations and can automatically fix
-compiler warnings that have a clear way to correct the problem that’s likely
-what you want. It’s likely you’ve seen compiler warnings before. For example,
-consider this code:
+เครื่องมือ rustfix รวมอยู่ในการติดตั้ง Rust และสามารถแก้ไขคำเตือนของคอมไพเลอร์โดยอัตโนมัติ ในกรณีที่มีวิธีแก้ไขปัญหาที่ชัดเจนและน่าจะเป็นสิ่งที่คุณต้องการ เป็นไปได้ว่าคุณเคยเห็นคำเตือนของคอมไพเลอร์มาก่อน ตัวอย่างเช่น พิจารณาโค้ดนี้:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">ชื่อไฟล์: src/main.rs</span>
 
 ```rust
 fn do_something() {}
@@ -48,8 +38,7 @@ fn main() {
 }
 ```
 
-Here, we’re calling the `do_something` function 100 times, but we never use the
-variable `i` in the body of the `for` loop. Rust warns us about that:
+เรากำลังเรียกฟังก์ชัน `do_something` 100 ครั้ง แต่เราไม่เคยใช้ตัวแปร `i` ในส่วนเนื้อหาของลูป `for` Rust จะเตือนเราเกี่ยวกับเรื่องนี้:
 
 ```console
 $ cargo build
@@ -65,10 +54,7 @@ warning: unused variable: `i`
     Finished dev [unoptimized + debuginfo] target(s) in 0.50s
 ```
 
-The warning suggests that we use `_i` as a name instead: the underscore
-indicates that we intend for this variable to be unused. We can automatically
-apply that suggestion using the `rustfix` tool by running the command `cargo
-fix`:
+คำเตือนแนะนำให้เราใช้ `_i` เป็นชื่อแทน: เครื่องหมายขีดล่างระบุว่าเราตั้งใจให้ตัวแปรนี้ไม่ถูกใช้ เราสามารถใช้คำแนะนำนั้นโดยอัตโนมัติโดยใช้เครื่องมือ `rustfix` ด้วยการรันคำสั่ง `cargo fix`:
 
 ```console
 $ cargo fix
@@ -77,10 +63,9 @@ $ cargo fix
     Finished dev [unoptimized + debuginfo] target(s) in 0.59s
 ```
 
-When we look at *src/main.rs* again, we’ll see that `cargo fix` has changed the
-code:
+เมื่อเราดูที่ *src/main.rs* อีกครั้ง เราจะเห็นว่า `cargo fix` ได้เปลี่ยนโค้ดแล้ว:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">ชื่อไฟล์:  src/main.rs</span>
 
 ```rust
 fn do_something() {}
@@ -92,7 +77,7 @@ fn main() {
 }
 ```
 
-The `for` loop variable is now named `_i`, and the warning no longer appears.
+ตัวแปรลูป `for` ตอนนี้ชื่อว่า `_i` และคำเตือนไม่ปรากฏอีกต่อไป
 
 You can also use the `cargo fix` command to transition your code between
 different Rust editions. Editions are covered in [Appendix E][editions].
