@@ -18,7 +18,7 @@ $ rustup component add rustfmt
 $ cargo fmt
 ```
 
-การเรียกใช้คำสั่งนี้จะจัดรูปแบบโค้ด Rust ทั้งหมดในเครตปัจจุบัน สิ่งนี้ควรเปลี่ยนเฉพาะรูปแบบโค้ดเท่านั้น ไม่ใช่ความหมายของโค้ด สำหรับข้อมูลเพิ่มเติมเกี่ยวกับ `rustfmt` ดูได้ที่ [เอกสารประกอบ][rustfmt].
+การเรียกใช้คำสั่งนี้จะจัดรูปแบบโค้ด Rust ทั้งหมดในเครตปัจจุบัน สิ่งนี้ควรเปลี่ยนเฉพาะรูปแบบโค้ดเท่านั้น ไม่ใช่ความหมายของโค้ด สำหรับข้อมูลเพิ่มเติมเกี่ยวกับ `rustfmt` ดูได้ที่ [คู่มือของ rustfmt ][rustfmt]
 
 [rustfmt]: https://github.com/rust-lang/rustfmt
 
@@ -79,30 +79,27 @@ fn main() {
 
 ตัวแปรลูป `for` ตอนนี้ชื่อว่า `_i` และคำเตือนไม่ปรากฏอีกต่อไป
 
-You can also use the `cargo fix` command to transition your code between
-different Rust editions. Editions are covered in [Appendix E][editions].
+คุณยังสามารถใช้คำสั่ง `cargo fix` เพื่อเปลี่ยนโค้ดของคุณระหว่างฉบับ (editions) Rust ที่แตกต่างกันได้ ฉบับต่างๆ ได้กล่าวถึงใน [ภาคผนวก E][editions].
 
-### More Lints with Clippy
+### การตรวจสอบเพิ่มเติมด้วย Clippy
 
-The Clippy tool is a collection of lints to analyze your code so you can catch
-common mistakes and improve your Rust code.
+เครื่องมือ Clippy เป็นชุดของการตรวจสอบเพื่อวิเคราะห์โค้ดของคุณ เพื่อให้คุณสามารถจับข้อผิดพลาดทั่วไปและปรับปรุงโค้ด Rust ของคุณได้
 
-To install Clippy, enter the following:
+เพื่อติดตั้ง Clippy ให้ป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ rustup component add clippy
 ```
 
-To run Clippy’s lints on any Cargo project, enter the following:
+เพื่อเรียกใช้การตรวจสอบของ Clippy กับโครงการ Cargo ใดๆ ให้ป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ cargo clippy
 ```
 
-For example, say you write a program that uses an approximation of a
-mathematical constant, such as pi, as this program does:
+ตัวอย่างเช่น สมมติว่าคุณเขียนโปรแกรมที่ใช้ค่าประมาณของค่าคงที่ทางคณิตศาสตร์ เช่น พาย (pi) ดังที่โปรแกรมนี้ทำ:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">ช่อไฟล์: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -112,7 +109,7 @@ fn main() {
 }
 ```
 
-Running `cargo clippy` on this project results in this error:
+การรัน `cargo clippy` กับโครงการนี้จะส่งผลให้เกิดข้อผิดพลาดนี้:
 
 ```text
 error: approximate value of `f{32, 64}::consts::PI` found
@@ -126,12 +123,12 @@ error: approximate value of `f{32, 64}::consts::PI` found
   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#approx_constant
 ```
 
-This error lets you know that Rust already has a more precise `PI` constant
-defined, and that your program would be more correct if you used the constant
-instead. You would then change your code to use the `PI` constant. The
-following code doesn’t result in any errors or warnings from Clippy:
+ข้อผิดพลาดนี้แจ้งให้คุณทราบว่า Rust มีค่าคงที่ `PI` ที่แม่นยำกว่าอยู่แล้ว 
+และโปรแกรมของคุณจะถูกต้องมากขึ้นถ้าคุณใช้ค่าคงที่นั้นแทน 
+จากนั้นคุณจะเปลี่ยนโค้ดของคุณเพื่อใช้ค่าคงที่ `PI` 
+โค้ดต่อไปนี้ไม่ส่งผลให้เกิดข้อผิดพลาดหรือคำเตือนใดๆ จาก Clippy:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">ชื่อไฟล์:  src/main.rs</span>
 
 ```rust
 fn main() {
@@ -141,26 +138,23 @@ fn main() {
 }
 ```
 
-For more information on Clippy, see [its documentation][clippy].
+สำหรับข้อมูลเพิ่มเติมเกี่ยวกับ Clippy ดูได้ที่ [คู่มือของ Clippy][clippy].
 
 [clippy]: https://github.com/rust-lang/rust-clippy
 
-### IDE Integration Using `rust-analyzer`
+### การผสานรวม IDE โดยใช้ `rust-analyzer`
 
-To help IDE integration, the Rust community recommends using
-[`rust-analyzer`][rust-analyzer]<!-- ignore -->. This tool is a set of
-compiler-centric utilities that speaks the [Language Server Protocol][lsp]<!--
-ignore -->, which is a specification for IDEs and programming languages to
-communicate with each other. Different clients can use `rust-analyzer`, such as
-[the Rust analyzer plug-in for Visual Studio Code][vscode].
+เพื่อช่วยในการผสานรวม IDE ชุมชน Rust แนะนำให้ใช้ [`rust-analyzer`](https://rust-analyzer.github.io)<!-- ignore --> 
+เครื่องมือนี้เป็นชุดของยูทิลิตี้ที่เน้นคอมไพเลอร์ซึ่งพูดโปรโตคอล [Language Server Protocol](http://langserver.org/)<!-- ignore -->
+ซึ่งเป็นข้อกำหนดสำหรับ IDE และภาษาโปรแกรมเพื่อสื่อสารระหว่างกัน 
+ไคลเอนต์ต่างๆ สามารถใช้ `rust-analyzer` ได้ เช่น [ปลั๊กอิน Rust analyzer สำหรับ Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 
 [lsp]: http://langserver.org/
 [vscode]: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
 
-Visit the `rust-analyzer` project’s [home page][rust-analyzer]<!-- ignore -->
-for installation instructions, then install the language server support in your
-particular IDE. Your IDE will gain abilities such as autocompletion, jump to
-definition, and inline errors.
+เยี่ยมชม[หน้าหลักของโครงการ `rust-analyzer`](https://rust-analyzer.github.io)<!-- ignore --> 
+สำหรับคำแนะนำในการติดตั้ง จากนั้นติดตั้งการสนับสนุน language server ใน IDE ของคุณ 
+IDE ของคุณจะได้รับความสามารถต่างๆ เช่น การเติมคำอัตโนมัติ การข้ามไปยังคำจำกัดความ และข้อผิดพลาดแบบอินไลน์
 
 [rust-analyzer]: https://rust-analyzer.github.io
 [editions]: appendix-05-editions.md
