@@ -1,41 +1,36 @@
-# Foreword
+# บทนำ
 
-It wasn’t always so clear, but the Rust programming language is fundamentally
-about *empowerment*: no matter what kind of code you are writing now, Rust
-empowers you to reach farther, to program with confidence in a wider variety of
-domains than you did before.
+อาจไม่ได้ชัดเจนเสมอไป แต่ภาษาโปรแกรมมิ่ง Rust นั้นเกี่ยวกับ *การเสริมพลัง* อย่างแท้จริง: 
+ไม่ว่าคุณจะกำลังเขียนโค้ดประเภทใดอยู่ตอนนี้ Rust ช่วยให้คุณก้าวไกลขึ้น 
+ให้คุณเขียนโปรแกรมด้วยความมั่นใจในหลากหลายด้านมากขึ้นกว่าที่เคย
 
-Take, for example, “systems-level” work that deals with low-level details of
-memory management, data representation, and concurrency. Traditionally, this
-realm of programming is seen as arcane, accessible only to a select few who
-have devoted the necessary years learning to avoid its infamous pitfalls. And
-even those who practice it do so with caution, lest their code be open to
-exploits, crashes, or corruption.
+ยกตัวอย่างเช่น งาน "ระดับระบบ" ที่เกี่ยวข้องกับรายละเอียดระดับต่ำของการจัดการหน่วยความจำ 
+การแทนข้อมูล และการทำงานพร้อมกัน 
+โดยทั่วไปแล้ว ขอบเขตของการเขียนโปรแกรมนี้ถูกมองว่าเป็นเรื่องลึกลับ 
+เข้าถึงได้เฉพาะคนกลุ่มเล็กๆ ที่ทุ่มเทเวลาหลายปีในการเรียนรู้เพื่อหลีกเลี่ยงหลุมพรางอันโด่งดัง 
+แม้แต่ผู้ที่ปฏิบัติก็ทำด้วยความระมัดระวัง เกรงว่าโค้ดของพวกเขาจะเปิดช่องให้ถูกโจมตี เกิดการหยุดทำงาน หรือเสียหาย
 
-Rust breaks down these barriers by eliminating the old pitfalls and providing a
-friendly, polished set of tools to help you along the way. Programmers who need
-to “dip down” into lower-level control can do so with Rust, without taking on
-the customary risk of crashes or security holes, and without having to learn
-the fine points of a fickle toolchain. Better yet, the language is designed to
-guide you naturally towards reliable code that is efficient in terms of speed
-and memory usage.
+Rust ทำลายอุปสรรคเหล่านี้โดยกำจัดหลุมพรางเก่าๆ และมอบชุดเครื่องมือที่เป็นมิตรและขัดเกลาอย่างดี เพื่อช่วยเหลือคุณตลอดทาง 
+โปรแกรมเมอร์ที่ต้องการ "ดำดิ่ง" ลงไปควบคุมในระดับต่ำลงสามารถทำได้กับ Rust 
+โดยไม่ต้องเสี่ยงกับการหยุดทำงานหรือช่องโหว่ด้านความปลอดภัยตามปกติ 
+และไม่ต้องเรียนรู้รายละเอียดปลีกย่อยของชุดเครื่องมือที่เปลี่ยนแปลงง่าย 
+ยิ่งไปกว่านั้นภาษานี้ถูกออกแบบมาเพื่อนำทางคุณไปสู่โค้ดที่เชื่อถือได้ซึ่งมีประสิทธิภาพทั้งในแง่ของความเร็วและการใช้หน่วยความจำ
 
-Programmers who are already working with low-level code can use Rust to raise
-their ambitions. For example, introducing parallelism in Rust is a relatively
-low-risk operation: the compiler will catch the classical mistakes for you. And
-you can tackle more aggressive optimizations in your code with the confidence
-that you won’t accidentally introduce crashes or vulnerabilities.
+โปรแกรมเมอร์ที่กำลังทำงานกับโค้ดระดับต่ำอยู่แล้วสามารถใช้ Rust เพื่อยกระดับความทะเยอทะยานของพวกเขา 
+ตัวอย่างเช่น การแนะนำการทำงานแบบขนานใน Rust เป็นการดำเนินการที่มีความเสี่ยงค่อนข้างต่ำ: 
+คอมไพเลอร์จะจับข้อผิดพลาดแบบคลาสสิกให้คุณ 
+และคุณสามารถจัดการกับการเพิ่มประสิทธิภาพที่ท้าทายมากขึ้นในโค้ดของคุณด้วยความมั่นใจว่า
+คุณจะไม่เผลอแนะนำการหยุดทำงานหรือช่องโหว่โดยไม่ตั้งใจ
 
-But Rust isn’t limited to low-level systems programming. It’s expressive and
-ergonomic enough to make CLI apps, web servers, and many other kinds of code
-quite pleasant to write — you’ll find simple examples of both later in the
-book. Working with Rust allows you to build skills that transfer from one
-domain to another; you can learn Rust by writing a web app, then apply those
-same skills to target your Raspberry Pi.
+แต่ Rust ไม่ได้จำกัดอยู่แค่การเขียนโปรแกรมระบบระดับต่ำ 
+มันมีการแสดงออกและการยศาสตร์ที่ดีพอที่จะทำให้การเขียนแอปพลิเคชัน CLI, เว็บเซิร์ฟเวอร์ และโค้ดประเภทอื่นๆ 
+อีกมากมายเป็นเรื่องที่น่าพอใจ - คุณจะพบตัวอย่างง่ายๆ ของทั้งสองอย่างในภายหลังในหนังสือเล่มนี้ 
+การทำงานกับ Rust ช่วยให้คุณสร้างทักษะที่สามารถถ่ายโอนจากด้านหนึ่งไปยังอีกด้านหนึ่งได้ 
+คุณสามารถเรียนรู้ Rust โดยการเขียนแอปเว็บ จากนั้นนำทักษะเดียวกันนั้นไปใช้กับ Raspberry Pi ของคุณได้
 
-This book fully embraces the potential of Rust to empower its users. It’s a
-friendly and approachable text intended to help you level up not just your
-knowledge of Rust, but also your reach and confidence as a programmer in
-general. So dive in, get ready to learn—and welcome to the Rust community!
+หนังสือเล่มนี้ยอมรับศักยภาพของ Rust ในการเสริมพลังให้ผู้ใช้อย่างเต็มที่ 
+มันเป็นบทความที่เป็นมิตรและเข้าถึงง่ายซึ่งมีจุดประสงค์เพื่อช่วยยกระดับไม่เพียงแค่ความรู้ของคุณเกี่ยวกับ Rust 
+แต่ยังรวมถึงขอบเขตและความมั่นใจของคุณในฐานะโปรแกรมเมอร์โดยทั่วไปด้วย 
+ดังนั้นจงดำดิ่งลงไป เตรียมพร้อมที่จะเรียนรู้ — และยินดีต้อนรับสู่ชุมชน Rust!
 
-— Nicholas Matsakis and Aaron Turon
+— Nicholas Matsakis และ Aaron Turon
