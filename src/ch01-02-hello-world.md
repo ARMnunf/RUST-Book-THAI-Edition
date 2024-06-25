@@ -1,28 +1,27 @@
-## Hello, World!
+## สวัสดี, โลก!
 
-Now that you’ve installed Rust, it’s time to write your first Rust program.
-It’s traditional when learning a new language to write a little program that
-prints the text `Hello, world!` to the screen, so we’ll do the same here!
+ตอนนี้คุณได้ติดตั้ง Rust แล้ว ถึงเวลาเขียนโปรแกรม Rust แรกของคุณ 
+เป็นธรรมเนียมปฏิบัติเมื่อเรียนรู้ภาษาใหม่ที่จะเขียนโปรแกรมเล็กๆ ที่ แสดงข้อความ `สวัสดี, โลก!` บนหน้าจอ 
+ดังนั้นเราจะทำแบบเดียวกันที่นี่!
 
-> Note: This book assumes basic familiarity with the command line. Rust makes
-> no specific demands about your editing or tooling or where your code lives, so
-> if you prefer to use an integrated development environment (IDE) instead of
-> the command line, feel free to use your favorite IDE. Many IDEs now have some
-> degree of Rust support; check the IDE’s documentation for details. The Rust
-> team has been focusing on enabling great IDE support via `rust-analyzer`. See
-> [Appendix D][devtools]<!-- ignore --> for more details.
+> หมายเหตุ: หนังสือเล่มนี้สันนิษฐานว่าคุณมีความคุ้นเคยพื้นฐานกับการใช้คำสั่งในเทอร์มินอล 
+> Rust ไม่ได้มีข้อกำหนดเฉพาะเกี่ยวกับการแก้ไขหรือเครื่องมือหรือตำแหน่งที่โค้ดของคุณอยู่ 
+> ดังนั้น หากคุณชอบใช้สภาพแวดล้อมการพัฒนาแบบรวม (IDE) แทนการใช้คำสั่งในเทอร์มินอล 
+> คุณสามารถใช้ IDE ที่คุณชอบได้ ปัจจุบัน IDE หลายตัวมีการรองรับ Rust ในระดับหนึ่ง; 
+> ตรวจสอบคู่มือของ IDE สำหรับรายละเอียด 
+> ทีม Rust ได้มุ่งเน้นไปที่การเปิดใช้งานการสนับสนุน IDE ที่ยอดเยี่ยมผ่าน `rust-analyzer` 
+> ดูที่ [ภาคผนวก D][devtools]<!-- ignore --> สำหรับรายละเอียดเพิ่มเติม
 
-### Creating a Project Directory
+### การสร้างไดเร็กทอรีโปรเจค
 
-You’ll start by making a directory to store your Rust code. It doesn’t matter
-to Rust where your code lives, but for the exercises and projects in this book,
-we suggest making a *projects* directory in your home directory and keeping all
-your projects there.
+คุณจะเริ่มต้นด้วยการสร้างไดเร็กทอรีเพื่อเก็บโค้ด Rust ของคุณ ไม่สำคัญ 
+สำหรับ Rust ว่าโค้ดของคุณอยู่ที่ไหน แต่สำหรับแบบฝึกหัดและโปรเจคในหนังสือเล่มนี้ 
+เราแนะนำให้สร้างไดเร็กทอรี *projects* ในไดเร็กทอรีหลักของคุณและเก็บโปรเจคทั้งหมดของคุณไว้ที่นั่น
 
-Open a terminal and enter the following commands to make a *projects* directory
-and a directory for the “Hello, world!” project within the *projects* directory.
+เปิดเทอร์มินอลและป้อนคำสั่งต่อไปนี้เพื่อสร้างไดเร็กทอรี *projects* 
+และไดเร็กทอรีสำหรับโปรเจค “สวัสดี, โลก!” ภายในไดเร็กทอรี *projects*
 
-For Linux, macOS, and PowerShell on Windows, enter this:
+สำหรับ Linux, macOS, และ PowerShell บน Windows ให้ป้อนคำสั่งนี้:
 
 ```console
 $ mkdir ~/projects
@@ -31,7 +30,7 @@ $ mkdir hello_world
 $ cd hello_world
 ```
 
-For Windows CMD, enter this:
+สำหรับ Windows CMD ให้ป้อนคำสั่งนี้:
 
 ```cmd
 > mkdir "%USERPROFILE%\projects"
@@ -40,55 +39,56 @@ For Windows CMD, enter this:
 > cd hello_world
 ```
 
-### Writing and Running a Rust Program
+### การเขียนและการเรียกใช้โปรแกรม Rust
 
-Next, make a new source file and call it *main.rs*. Rust files always end with
-the *.rs* extension. If you’re using more than one word in your filename, the
-convention is to use an underscore to separate them. For example, use
-*hello_world.rs* rather than *helloworld.rs*.
+ต่อไป ให้สร้างไฟล์ซอร์สใหม่และตั้งชื่อว่า *main.rs* ไฟล์ Rust จะลงท้ายด้วย 
+นามสกุล *.rs* เสมอ หากคุณใช้คำมากกว่าหนึ่งคำในชื่อไฟล์ของคุณ 
+ธรรมเนียมปฏิบัติคือใช้ขีดล่างเพื่อแยกคำ 
+ตัวอย่างเช่น ใช้ *hello_world.rs* แทนที่จะเป็น *helloworld.rs*
 
-Now open the *main.rs* file you just created and enter the code in Listing 1-1.
+ตอนนี้เปิดไฟล์ *main.rs* ที่คุณเพิ่งสร้างและป้อนโค้ดในรายการ 1-1
 
 <Listing number="1-1" file-name="main.rs" caption="A program that prints `Hello, world!`">
 
 ```rust
 fn main() {
-    println!("Hello, world!");
+    println!("สวัสดี, โลก!");
 }
 ```
 
 </Listing>
 
-Save the file and go back to your terminal window in the
-*~/projects/hello_world* directory. On Linux or macOS, enter the following
-commands to compile and run the file:
+บันทึกไฟล์และกลับไปที่หน้าต่างเทอร์มินอลของคุณใน 
+ไดเร็กทอรี *~/projects/hello_world* บน Linux หรือ macOS ให้ป้อนคำสั่งต่อไปนี้ 
+เพื่อคอมไพล์และเรียกใช้ไฟล์:
 
 ```console
 $ rustc main.rs
 $ ./main
-Hello, world!
+สวัสดี, โลก!
 ```
 
-On Windows, enter the command `.\main.exe` instead of `./main`:
+บน Windows ให้ป้อนคำสั่ง `.\main.exe` แทน `./main`:
 
 ```powershell
 > rustc main.rs
 > .\main.exe
-Hello, world!
+สวัสดี, โลก!
 ```
 
-Regardless of your operating system, the string `Hello, world!` should print to
-the terminal. If you don’t see this output, refer back to the
-[“Troubleshooting”][troubleshooting]<!-- ignore --> part of the Installation
-section for ways to get help.
+ไม่ว่าคุณจะใช้ระบบปฏิบัติการใด สตริง`สวัสดี, โลก!`ควรจะแสดงในเทอร์มินอล 
+หากคุณไม่เห็นผลลัพธ์นี้ ให้กลับไปที่ 
+ส่วน ["การแก้ไขปัญหา"][troubleshooting]<!-- ignore --> ของส่วนการติดตั้ง 
+เพื่อดูวิธีรับความช่วยเหลือ
 
-If `Hello, world!` did print, congratulations! You’ve officially written a Rust
-program. That makes you a Rust programmer—welcome!
+หาก `สวัสดี, โลก!` แสดงขึ้นมา ขอแสดงความยินดี! 
+คุณได้เขียนโปรแกรม Rust อย่างเป็นทางการแล้ว 
+นั่นทำให้คุณเป็นโปรแกรมเมอร์ Rust - ยินดีต้อนรับ!
 
-### Anatomy of a Rust Program
+### โครงสร้างของโปรแกรม Rust
 
-Let’s review this “Hello, world!” program in detail. Here’s the first piece of
-the puzzle:
+มาดูรายละเอียดของโปรแกรม "สวัสดี, โลก!" นี้กัน 
+นี่คือส่วนแรกของปริศนา:
 
 ```rust
 fn main() {
@@ -96,73 +96,70 @@ fn main() {
 }
 ```
 
-These lines define a function named `main`. The `main` function is special: it
-is always the first code that runs in every executable Rust program. Here, the
-first line declares a function named `main` that has no parameters and returns
-nothing. If there were parameters, they would go inside the parentheses `()`.
+บรรทัดเหล่านี้กำหนดฟังก์ชันที่ชื่อว่า `main` ฟังก์ชัน `main` เป็นฟังก์ชันพิเศษ: 
+มันเป็นโค้ดส่วนแรกที่ทำงานในทุกโปรแกรมของ Rust 
+ในบรรทัดแรกนี้ มีการประกาศฟังก์ชันที่ชื่อว่า `main` ที่ไม่มีพารามิเตอร์และไม่คืนค่าอะไร 
+หากมีพารามิเตอร์ พารามิเตอร์จะอยู่ภายในวงเล็บ `()`
 
-The function body is wrapped in `{}`. Rust requires curly brackets around all
-function bodies. It’s good style to place the opening curly bracket on the same
-line as the function declaration, adding one space in between.
+เนื้อหาของฟังก์ชันถูกห่อหุ้มด้วย `{}` Rust กำหนดให้ใช้วงเล็บปีกการอบเนื้อหาของฟังก์ชันทั้งหมด 
+เป็นสไตล์ที่ดีที่จะวางวงเล็บปีกกาเปิดในบรรทัดเดียวกันกับการประกาศฟังก์ชัน 
+โดยเว้นวรรคหนึ่งช่องระหว่างกัน
 
-> Note: If you want to stick to a standard style across Rust projects, you can
-> use an automatic formatter tool called `rustfmt` to format your code in a
-> particular style (more on `rustfmt` in
-> [Appendix D][devtools]<!-- ignore -->). The Rust team has included this tool
-> with the standard Rust distribution, as `rustc` is, so it should already be
-> installed on your computer!
+> หมายเหตุ: หากคุณต้องการยึดตามสไตล์มาตรฐานในโปรเจค Rust คุณสามารถ 
+> ใช้เครื่องมือจัดรูปแบบอัตโนมัติที่เรียกว่า `rustfmt` เพื่อจัดรูปแบบโค้ดของคุณในสไตล์เฉพาะ 
+> (อ่านเพิ่มเติมเกี่ยวกับ `rustfmt` ใน [ภาคผนวก D][devtools]<!-- ignore -->) 
+> ทีม Rust ได้รวมเครื่องมือนี้ ไว้กับการแจกจ่าย Rust มาตรฐาน เช่นเดียวกับ `rustc` 
+> ดังนั้นมันควรจะถูกติดตั้ง บนคอมพิวเตอร์ของคุณแล้ว!
 
-The body of the `main` function holds the following code:
+เนื้อหาของฟังก์ชัน `main` มีโค้ดต่อไปนี้:
 
 ```rust
-    println!("Hello, world!");
+    println!("สวัสดี, โลก!");
 ```
 
-This line does all the work in this little program: it prints text to the
-screen. There are four important details to notice here.
+บรรทัดนี้ทำงานทั้งหมดในโปรแกรมเล็กๆ นี้: มันแสดงข้อความบนหน้าจอ 
+มีรายละเอียดสำคัญสี่ประการที่ต้องสังเกตที่นี่
 
-First, Rust style is to indent with four spaces, not a tab.
+ประการแรก สไตล์ของ Rust คือการเยื้องด้วยช่องว่างสี่ช่อง ไม่ใช่แท็บ
 
-Second, `println!` calls a Rust macro. If it had called a function instead, it
-would be entered as `println` (without the `!`). We’ll discuss Rust macros in
-more detail in Chapter 19. For now, you just need to know that using a `!`
-means that you’re calling a macro instead of a normal function and that macros
-don’t always follow the same rules as functions.
+ประการที่สอง `println!` เรียกใช้แมโคร Rust 
+หากมันเรียกใช้ฟังก์ชันแทน มันจะถูก ป้อนเป็น `println` (โดยไม่มี `!`) 
+เราจะพูดถึงแมโคร Rust โดยละเอียดใน บทที่ 19 
+ตอนนี้คุณเพียงแค่ต้องรู้ว่าการใช้ `!` หมายความว่าคุณกำลังเรียกใช้แมโคร 
+แทนฟังก์ชันปกติและแมโครไม่ได้ปฏิบัติตามกฎเดียวกันกับฟังก์ชันเสมอไป
 
-Third, you see the `"Hello, world!"` string. We pass this string as an argument
-to `println!`, and the string is printed to the screen.
+ประการที่สาม คุณเห็นสตริง `"สวัสดี, โลก!"` เราส่งสตริงนี้เป็นอาร์กิวเมนต์ 
+ให้กับ `println!` และสตริงจะถูกแสดงบนหน้าจอ
 
-Fourth, we end the line with a semicolon (`;`), which indicates that this
-expression is over and the next one is ready to begin. Most lines of Rust code
-end with a semicolon.
+ประการที่สี่ เราจบบรรทัดด้วยเซมิโคลอน (`;`) ซึ่งบ่งบอกว่านิพจน์นี้ 
+สิ้นสุดแล้วและนิพจน์ถัดไปพร้อมที่จะเริ่มต้น 
+บรรทัดส่วนใหญ่ของโค้ด Rust จบด้วยเซมิโคลอน
 
-### Compiling and Running Are Separate Steps
+### การคอมไพล์และการเรียกใช้เป็นขั้นตอนแยกกัน
 
-You’ve just run a newly created program, so let’s examine each step in the
-process.
+คุณเพิ่งเรียกใช้โปรแกรมที่สร้างขึ้นใหม่ ดังนั้นมาตรวจสอบแต่ละขั้นตอนในกระบวนการกัน
 
-Before running a Rust program, you must compile it using the Rust compiler by
-entering the `rustc` command and passing it the name of your source file, like
-this:
+ก่อนที่จะเรียกใช้โปรแกรม Rust คุณต้องคอมไพล์มันโดยใช้คอมไพเลอร์ Rust 
+โดยป้อนคำสั่ง `rustc` และส่งชื่อไฟล์ซอร์สของคุณ เช่นนี้:
 
 ```console
 $ rustc main.rs
 ```
 
-If you have a C or C++ background, you’ll notice that this is similar to `gcc`
-or `clang`. After compiling successfully, Rust outputs a binary executable.
+หากคุณมีพื้นฐานทาง C หรือ C++ คุณจะสังเกตเห็นว่านี่คล้ายกับ `gcc` หรือ `clang` 
+หลังจากคอมไพล์สำเร็จ Rust จะสร้างไฟล์ไบนารีที่เรียกใช้งานได้
 
-On Linux, macOS, and PowerShell on Windows, you can see the executable by
-entering the `ls` command in your shell:
+บน Linux, macOS, และ PowerShell บน Windows คุณสามารถดูไฟล์ที่เรียกใช้งานได้โดย 
+ป้อนคำสั่ง `ls` ในเชลล์ของคุณ:
 
 ```console
 $ ls
 main  main.rs
 ```
 
-On Linux and macOS, you’ll see two files. With PowerShell on Windows, you’ll
-see the same three files that you would see using CMD. With CMD on Windows, you
-would enter the following:
+บน Linux และ macOS คุณจะเห็นสองไฟล์ ใน PowerShell 
+บน Windows คุณจะเห็นไฟล์เดียวกันสามไฟล์ที่คุณจะเห็นใน CMD 
+ใน CMD บน Windows คุณจะป้อนคำสั่งดังนี้:
 
 ```cmd
 > dir /B %= the /B option says to only show the file names =%
@@ -171,31 +168,28 @@ main.pdb
 main.rs
 ```
 
-This shows the source code file with the *.rs* extension, the executable file
-(*main.exe* on Windows, but *main* on all other platforms), and, when using
-Windows, a file containing debugging information with the *.pdb* extension.
-From here, you run the *main* or *main.exe* file, like this:
+นี่แสดงไฟล์ซอร์สโค้ดที่มีนามสกุล *.rs* ไฟล์ที่เรียกใช้งานได้ (*main.exe* บน Windows แต่เป็น *main* บนแพลตฟอร์มอื่นๆ ทั้งหมด) 
+และเมื่อใช้ Windows จะมีไฟล์ที่มีข้อมูลการดีบั๊กด้วยนามสกุล *.pdb* จากที่นี่ 
+คุณสามารถเรียกใช้ไฟล์ *main* หรือ *main.exe* แบบนี้:
 
 ```console
 $ ./main # or .\main.exe on Windows
 ```
 
-If your *main.rs* is your “Hello, world!” program, this line prints `Hello,
-world!` to your terminal.
+หาก *main.rs* ของคุณเป็นโปรแกรม "สวัสดี, โลก!" 
+บรรทัดนี้จะแสดง `สวัสดี, โลก!` บนเทอร์มินอลของคุณ
 
-If you’re more familiar with a dynamic language, such as Ruby, Python, or
-JavaScript, you might not be used to compiling and running a program as
-separate steps. Rust is an *ahead-of-time compiled* language, meaning you can
-compile a program and give the executable to someone else, and they can run it
-even without having Rust installed. If you give someone a *.rb*, *.py*, or
-*.js* file, they need to have a Ruby, Python, or JavaScript implementation
-installed (respectively). But in those languages, you only need one command to
-compile and run your program. Everything is a trade-off in language design.
+หากคุณคุ้นเคยกับภาษาแบบไดนามิกมากกว่า เช่น Ruby, Python หรือ JavaScript 
+คุณอาจไม่คุ้นเคยกับการคอมไพล์และการเรียกใช้โปรแกรมเป็นขั้นตอนแยกกัน 
+Rust เป็นภาษาที่ *คอมไพล์ล่วงหน้า* หมายความว่าคุณสามารถคอมไพล์โปรแกรมและให้ไฟล์ที่เรียกใช้งานได้แก่ผู้อื่น 
+และพวกเขาสามารถเรียกใช้มันได้แม้ว่าจะไม่มี Rust ติดตั้งอยู่ 
+หากคุณให้ไฟล์ *.rb*, *.py* หรือ *.js* แก่ใครสักคน พวกเขาต้องมี Ruby, Python หรือ JavaScript ติดตั้งอยู่ (ตามลำดับ) 
+แต่ในภาษาเหล่านั้น คุณต้องใช้เพียงคำสั่งเดียว เพื่อคอมไพล์และเรียกใช้โปรแกรมของคุณ 
+ทุกอย่างเป็นการแลกเปลี่ยนในการออกแบบภาษา
 
-Just compiling with `rustc` is fine for simple programs, but as your project
-grows, you’ll want to manage all the options and make it easy to share your
-code. Next, we’ll introduce you to the Cargo tool, which will help you write
-real-world Rust programs.
+การคอมไพล์ด้วย `rustc` นั้นดีสำหรับโปรแกรมง่ายๆ 
+แต่เมื่อโปรเจคของคุณเติบโตขึ้น คุณจะต้องจัดการตัวเลือกทั้งหมดและทำให้การแบ่งปันโค้ดของคุณง่ายขึ้น 
+ต่อไปเราจะแนะนำคุณให้รู้จักเครื่องมือ Cargo ซึ่งจะช่วยคุณเขียนโปรแกรม Rust ในโลกแห่งความเป็นจริง
 
 [troubleshooting]: ch01-01-installation.html#troubleshooting
 [devtools]: appendix-04-useful-development-tools.html
