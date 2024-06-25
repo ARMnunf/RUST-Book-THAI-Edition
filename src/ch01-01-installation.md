@@ -1,138 +1,127 @@
-## Installation
+## การติดตั้ง
 
-The first step is to install Rust. We’ll download Rust through `rustup`, a
-command line tool for managing Rust versions and associated tools. You’ll need
-an internet connection for the download.
+ขั้นตอนแรกคือการติดตั้ง Rust เราจะดาวน์โหลด Rust ผ่าน `rustup` 
+ซึ่งเป็นเครื่องมือบรรทัดคำสั่งสำหรับจัดการเวอร์ชันของ Rust และเครื่องมือที่เกี่ยวข้อง 
+คุณจะต้องมีการเชื่อมต่ออินเทอร์เน็ตสำหรับการดาวน์โหลด
 
-> Note: If you prefer not to use `rustup` for some reason, please see the
-> [Other Rust Installation Methods page][otherinstall] for more options.
+> หมายเหตุ: หากคุณไม่ต้องการใช้ `rustup` ด้วยเหตุผลบางประการ 
+> โปรดดูที่ [หน้าวิธีการติดตั้ง Rust แบบอื่น][otherinstall] สำหรับตัวเลือกเพิ่มเติม
 
-The following steps install the latest stable version of the Rust compiler.
-Rust’s stability guarantees ensure that all the examples in the book that
-compile will continue to compile with newer Rust versions. The output might
-differ slightly between versions because Rust often improves error messages and
-warnings. In other words, any newer, stable version of Rust you install using
-these steps should work as expected with the content of this book.
+ขั้นตอนต่อไปนี้จะติดตั้งเวอร์ชันเสถียรล่าสุดของคอมไพเลอร์ Rust 
+การรับประกันความเสถียรของ Rust ทำให้มั่นใจได้ว่าตัวอย่างทั้งหมดในหนังสือที่คอมไพล์ได้
+จะยังคงคอมไพล์ได้กับเวอร์ชัน Rust ที่ใหม่กว่า 
+ผลลัพธ์อาจแตกต่างกันเล็กน้อยระหว่างเวอร์ชัน เนื่องจาก Rust มักปรับปรุงข้อความแสดงข้อผิดพลาดและคำเตือนให้ดีขึ้น 
+กล่าวอีกนัยหนึ่ง เวอร์ชันเสถียรใหม่ๆ ของ Rust ที่คุณติดตั้งโดยใช้ขั้นตอนเหล่านี้ควรทำงานได้ตามที่คาดหวัง
+กับเนื้อหาของหนังสือเล่มนี้
 
-> ### Command Line Notation
+> ### สัญลักษณ์บรรทัดคำสั่ง
 >
-> In this chapter and throughout the book, we’ll show some commands used in the
-> terminal. Lines that you should enter in a terminal all start with `$`. You
-> don’t need to type the `$` character; it’s the command line prompt shown to
-> indicate the start of each command. Lines that don’t start with `$` typically
-> show the output of the previous command. Additionally, PowerShell-specific
-> examples will use `>` rather than `$`.
+> ในบทนี้และตลอดทั้งเล่ม เราจะแสดงคำสั่งบางอย่างที่ใช้ในเทอร์มินัล 
+> บรรทัดที่คุณควรป้อนในเทอร์มินัลทั้งหมดจะขึ้นต้นด้วย `$` 
+> คุณไม่จำเป็นต้องพิมพ์อักขระ `$` มันเป็นพร็อมต์บรรทัดคำสั่งที่แสดงเพื่อบ่งบอกจุดเริ่มต้นของแต่ละคำสั่ง 
+> บรรทัดที่ไม่ขึ้นต้นด้วย `$` โดยทั่วไปจะแสดงผลลัพธ์ของคำสั่งก่อนหน้า 
+> นอกจากนี้ ตัวอย่างเฉพาะ PowerShell จะใช้ `>` แทน `$`
 
-### Installing `rustup` on Linux or macOS
+### การติดตั้ง `rustup` บน Linux หรือ macOS
 
-If you’re using Linux or macOS, open a terminal and enter the following command:
+หากคุณใช้ Linux หรือ macOS ให้เปิดเทอร์มินัลและป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-The command downloads a script and starts the installation of the `rustup`
-tool, which installs the latest stable version of Rust. You might be prompted
-for your password. If the install is successful, the following line will appear:
+คำสั่งนี้จะดาวน์โหลดสคริปต์และเริ่มการติดตั้งเครื่องมือ `rustup` 
+ซึ่งจะติดตั้ง Rust เวอร์ชันเสถียรล่าสุด 
+คุณอาจถูกขอให้ป้อนรหัสผ่าน หากการติดตั้งสำเร็จ จะปรากฏบรรทัดต่อไปนี้:
 
 ```text
 Rust is installed now. Great!
 ```
 
-You will also need a *linker*, which is a program that Rust uses to join its
-compiled outputs into one file. It is likely you already have one. If you get
-linker errors, you should install a C compiler, which will typically include a
-linker. A C compiler is also useful because some common Rust packages depend on
-C code and will need a C compiler.
+คุณยังต้องการ *linker* ซึ่งเป็นโปรแกรมที่ Rust ใช้เพื่อรวมผลลัพธ์ที่คอมไพล์แล้วให้เป็นไฟล์เดียว มีแนวโน้มว่าคุณมีอยู่แล้ว 
+หากคุณได้รับข้อผิดพลาดเกี่ยวกับ linker คุณควรติดตั้งคอมไพเลอร์ภาษา C ซึ่งโดยปกติจะรวม linker ไว้ด้วย 
+คอมไพเลอร์ภาษา C ยังมีประโยชน์เพราะแพ็คเกจ Rust ทั่วไปบางอย่างต้องพึ่งพาโค้ดภาษา C และจะต้องใช้คอมไพเลอร์ภาษา C
 
-On macOS, you can get a C compiler by running:
+บน macOS คุณสามารถรันคำสั่งต่อไปนี้เพื่อรับคอมไพเลอร์ภาษา C:
 
 ```console
 $ xcode-select --install
 ```
 
-Linux users should generally install GCC or Clang, according to their
-distribution’s documentation. For example, if you use Ubuntu, you can install
-the `build-essential` package.
+ผู้ใช้ Linux ควรติดตั้ง GCC หรือ Clang ตามเอกสารประกอบของดิสทริบิวชันที่ใช้ 
+ตัวอย่างเช่น หากคุณใช้ Ubuntu คุณสามารถติดตั้งแพ็คเกจ `build-essential`
 
-### Installing `rustup` on Windows
+### การติดตั้ง `rustup` บน Windows
 
-On Windows, go to [https://www.rust-lang.org/tools/install][install] and follow
-the instructions for installing Rust. At some point in the installation, you’ll
-be prompted to install Visual Studio. This provides a linker and the native
-libraries needed to compile programs. If you need more help with this step, see
-[https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]
+บน Windows ให้ไปที่ [https://www.rust-lang.org/tools/install][install] และทำตามคำแนะนำสำหรับการติดตั้ง Rust 
+ในขั้นตอนหนึ่งของการติดตั้ง คุณจะถูกขอให้ติดตั้ง Visual Studio ซึ่งจะให้ linker 
+และไลบรารีเนทีฟที่จำเป็นสำหรับการคอมไพล์โปรแกรม 
+หากคุณต้องการความช่วยเหลือเพิ่มเติมในขั้นตอนนี้ ดูที่ [https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]
 
-The rest of this book uses commands that work in both *cmd.exe* and PowerShell.
-If there are specific differences, we’ll explain which to use.
+ส่วนที่เหลือของหนังสือเล่มนี้ใช้คำสั่งที่ทำงานได้ทั้งใน *cmd.exe* และ PowerShell 
+หากมีความแตกต่างเฉพาะ เราจะอธิบายว่าควรใช้อันไหน
 
-### Troubleshooting
+### การแก้ไขปัญหา
 
-To check whether you have Rust installed correctly, open a shell and enter this
-line:
+เพื่อตรวจสอบว่าคุณได้ติดตั้ง Rust อย่างถูกต้องหรือไม่ ให้เปิดเชลล์และป้อนบรรทัดนี้:
 
 ```console
 $ rustc --version
 ```
 
-You should see the version number, commit hash, and commit date for the latest
-stable version that has been released, in the following format:
+คุณควรเห็นหมายเลขเวอร์ชัน, commit hash, และวันที่ commit สำหรับเวอร์ชันเสถียรล่าสุดที่ได้รับการเผยแพร่ ในรูปแบบต่อไปนี้:
 
 ```text
 rustc x.y.z (abcabcabc yyyy-mm-dd)
 ```
 
-If you see this information, you have installed Rust successfully! If you don’t
-see this information, check that Rust is in your `%PATH%` system variable as
-follows.
+หากคุณเห็นข้อมูลนี้ แสดงว่าคุณได้ติดตั้ง Rust สำเร็จแล้ว! 
+หากคุณไม่เห็นข้อมูลนี้ ให้ตรวจสอบว่า Rust อยู่ในตัวแปรระบบ `%PATH%` ของคุณดังนี้
 
-In Windows CMD, use:
+ใน Windows CMD ใช้:
 
 ```console
 > echo %PATH%
 ```
 
-In PowerShell, use:
+ใน PowerShell ใช้:
 
 ```powershell
 > echo $env:Path
 ```
 
-In Linux and macOS, use:
+ใน Linux และ macOS ใช้:
 
 ```console
 $ echo $PATH
 ```
 
-If that’s all correct and Rust still isn’t working, there are a number of
-places you can get help. Find out how to get in touch with other Rustaceans (a
-silly nickname we call ourselves) on [the community page][community].
+หากทั้งหมดถูกต้องและ Rust ยังไม่ทำงาน มีหลายที่ที่คุณสามารถขอความช่วยเหลือได้ 
+ค้นหาวิธีติดต่อกับ Rustaceans คนอื่นๆ (ชื่อเล่นที่น่าขันที่เราเรียกตัวเอง) ได้ที่ [หน้าชุมชน][community]
 
-### Updating and Uninstalling
+### การอัปเดตและถอนการติดตั้ง
 
-Once Rust is installed via `rustup`, updating to a newly released version is
-easy. From your shell, run the following update script:
+เมื่อติดตั้ง Rust ผ่าน `rustup` แล้ว การอัปเดตเป็นเวอร์ชันใหม่ที่เพิ่งเผยแพร่นั้นง่ายมาก จากเชลล์ของคุณ 
+ให้รันสคริปต์อัปเดตต่อไปนี้:
 
 ```console
 $ rustup update
 ```
 
-To uninstall Rust and `rustup`, run the following uninstall script from your
-shell:
+เพื่อถอนการติดตั้ง Rust และ `rustup` ให้รันสคริปต์ถอนการติดตั้งต่อไปนี้จากเชลล์ของคุณ:
 
 ```console
 $ rustup self uninstall
 ```
 
-### Local Documentation
+### คู่มือในเครื่อง
 
-The installation of Rust also includes a local copy of the documentation so
-that you can read it offline. Run `rustup doc` to open the local documentation
-in your browser.
+การติดตั้ง Rust ยังรวมถึงสำเนาของคู่มือในเครื่องด้วย 
+เพื่อให้คุณสามารถอ่านได้แบบออฟไลน์ รัน `rustup doc` เพื่อเปิดคู่มือในเครื่องในเบราว์เซอร์ของคุณ
 
-Any time a type or function is provided by the standard library and you’re not
-sure what it does or how to use it, use the application programming interface
-(API) documentation to find out!
+ทุกครั้งที่มีการให้ชนิดข้อมูลหรือฟังก์ชันโดยไลบรารีมาตรฐาน 
+และคุณไม่แน่ใจว่ามันทำอะไรหรือใช้อย่างไร 
+ให้ใช้คู่มือของ API (Application Programming Interface) เพื่อค้นหา!
 
 [otherinstall]: https://forge.rust-lang.org/infra/other-installation-methods.html
 [install]: https://www.rust-lang.org/tools/install
