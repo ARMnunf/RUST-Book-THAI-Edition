@@ -1,8 +1,8 @@
-# Getting Started
+# เริ่มต้นใช้งาน
 
-Let’s start your Rust journey! There’s a lot to learn, but every journey starts
-somewhere. In this chapter, we’ll discuss:
+มาเริ่มต้นการเดินทางในโลกของ Rust กันเถอะ! มีหลายสิ่งที่ต้องเรียนรู้ แต่ทุกการเดินทางย่อมมีจุดเริ่มต้น 
+ในบทนี้ เราจะพูดถึง:
 
-* Installing Rust on Linux, macOS, and Windows
-* Writing a program that prints `Hello, world!`
-* Using `cargo`, Rust’s package manager and build system
+* การติดตั้ง Rust บน Linux, macOS และ Windows
+* การเขียนโปรแกรมที่แสดงผล `Hello, world!`
+* การใช้ `cargo` ซึ่งเป็นตัวจัดการแพ็คเกจและระบบการสร้างของ Rust
