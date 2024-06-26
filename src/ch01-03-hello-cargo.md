@@ -1,62 +1,55 @@
-## Hello, Cargo!
+## สวัสดี, Cargo!
 
-Cargo is Rust’s build system and package manager. Most Rustaceans use this tool
-to manage their Rust projects because Cargo handles a lot of tasks for you,
-such as building your code, downloading the libraries your code depends on, and
-building those libraries. (We call the libraries that your code needs
-*dependencies*.)
+Cargo คือระบบการสร้างและตัวจัดการแพ็คเกจของ Rust 
+นักพัฒนา Rust ส่วนใหญ่ใช้เครื่องมือนี้ในการจัดการโปรเจกต์ Rust .
+เนื่องจาก Cargo จัดการงานหลายอย่างให้คุณ เช่น การสร้างโค้ดของคุณ การดาวน์โหลดไลบรารีที่โค้ดของคุณต้องการ 
+และการสร้างไลบรารีเหล่านั้น (เราเรียกไลบรารีที่โค้ดของคุณต้องการว่า *dependencies*)
 
-The simplest Rust programs, like the one we’ve written so far, don’t have any
-dependencies. If we had built the “Hello, world!” project with Cargo, it would
-only use the part of Cargo that handles building your code. As you write more
-complex Rust programs, you’ll add dependencies, and if you start a project
-using Cargo, adding dependencies will be much easier to do.
+โปรแกรม Rust ที่เรียบง่ายที่สุด เช่นโปรแกรมที่เราเขียนไปแล้ว ไม่มี dependencies ใดๆ 
+ถ้าเราสร้างโปรเจกต์ "Hello, world!" ด้วย Cargo มันจะใช้เฉพาะส่วนของ Cargo ที่จัดการกับการสร้างโค้ดของคุณเท่านั้น 
+เมื่อคุณเขียนโปรแกรม Rust ที่ซับซ้อนขึ้น คุณจะเพิ่ม dependencies 
+และถ้าคุณเริ่มโปรเจกต์โดยใช้ Cargo การเพิ่ม dependencies จะง่ายขึ้นมาก
 
-Because the vast majority of Rust projects use Cargo, the rest of this book
-assumes that you’re using Cargo too. Cargo comes installed with Rust if you
-used the official installers discussed in the
-[“Installation”][installation]<!-- ignore --> section. If you installed Rust
-through some other means, check whether Cargo is installed by entering the
-following in your terminal:
+เนื่องจากโปรเจกต์ Rust ส่วนใหญ่ใช้ Cargo หนังสือเล่มนี้จึงสมมติว่าคุณกำลังใช้ Cargo ด้วย 
+Cargo มาพร้อมกับการติดตั้ง Rust ถ้าคุณใช้ตัวติดตั้งอย่างเป็นทางการตามที่กล่าวไว้ในส่วน ["การติดตั้ง"][installation] 
+ถ้าคุณติดตั้ง Rust ด้วยวิธีอื่น ให้ตรวจสอบว่า Cargo ถูกติดตั้งหรือไม่โดยป้อนคำสั่งต่อไปนี้ในเทอร์มินัลของคุณ:
 
 ```console
 $ cargo --version
 ```
 
-If you see a version number, you have it! If you see an error, such as `command
-not found`, look at the documentation for your method of installation to
-determine how to install Cargo separately.
+ถ้าคุณเห็นหมายเลขเวอร์ชัน แสดงว่าคุณมีมันแล้ว! 
+ถ้าคุณเห็นข้อผิดพลาด เช่น `command not found` ให้ดูที่คู่มือสำหรับวิธีการติดตั้งของคุณ
+เพื่อกำหนดวิธีติดตั้ง Cargo แยกต่างหาก
 
-### Creating a Project with Cargo
+### การสร้างโปรเจกต์ด้วย Cargo
 
-Let’s create a new project using Cargo and look at how it differs from our
-original “Hello, world!” project. Navigate back to your *projects* directory
-(or wherever you decided to store your code). Then, on any operating system,
-run the following:
+มาสร้างโปรเจกต์ใหม่โดยใช้ Cargo และดูว่ามันแตกต่างจากโปรเจกต์ "Hello, world!" ดั้งเดิมของเราอย่างไร 
+นำทางกลับไปที่ไดเรกทอรี *projects* ของคุณ (หรือที่ไหนก็ตามที่คุณตัดสินใจเก็บโค้ดของคุณ) 
+จากนั้นบนระบบปฏิบัติการใดๆ ให้รันคำสั่งต่อไปนี้:
 
 ```console
 $ cargo new hello_cargo
 $ cd hello_cargo
 ```
 
-The first command creates a new directory and project called *hello_cargo*.
-We’ve named our project *hello_cargo*, and Cargo creates its files in a
-directory of the same name.
+คำสั่งแรกสร้างไดเรกทอรีใหม่และโปรเจกต์ชื่อ *hello_cargo* เราตั้งชื่อโปรเจกต์ของเราว่า *hello_cargo* 
+และ Cargo สร้างไฟล์ต่างๆ ในไดเรกทอรีที่มีชื่อเดียวกัน
 
-Go into the *hello_cargo* directory and list the files. You’ll see that Cargo
-has generated two files and one directory for us: a *Cargo.toml* file and a
-*src* directory with a *main.rs* file inside.
+เข้าไปในไดเรกทอรี *hello_cargo* และแสดงรายการไฟล์ 
+คุณจะเห็นว่า Cargo ได้สร้างไฟล์สองไฟล์และหนึ่งไดเรกทอรีให้เรา: ไฟล์ *Cargo.toml* 
+และไดเรกทอรี *src* ที่มีไฟล์ *main.rs* อยู่ข้างใน
 
-It has also initialized a new Git repository along with a *.gitignore* file.
-Git files won’t be generated if you run `cargo new` within an existing Git
-repository; you can override this behavior by using `cargo new --vcs=git`.
+นอกจากนี้ยังได้สร้าง Git repository  ใหม่พร้อมกับไฟล์ *.gitignore* 
+ไฟล์ Git จะไม่ถูกสร้างขึ้นถ้าคุณรัน `cargo new` ภายในพื้นที่เก็บ Git ที่มีอยู่แล้ว 
+คุณสามารถแทนที่พฤติกรรมนี้ได้โดยใช้ `cargo new --vcs=git `
 
-> Note: Git is a common version control system. You can change `cargo new` to
-> use a different version control system or no version control system by using
-> the `--vcs` flag. Run `cargo new --help` to see the available options.
+> หมายเหตุ: Git เป็นระบบควบคุมเวอร์ชันที่ใช้กันทั่วไป (version control)
+> คุณสามารถเปลี่ยน `cargo new` ให้ใช้ระบบควบคุมเวอร์ชันตัวอื่น
+> หรือไม่ใช้ระบบควบคุมเวอร์ชันได้โดยใช้ตัวเลือก `--vcs` รัน `cargo new --help` เพื่อดูตัวเลือกที่มีอยู่
 
-Open *Cargo.toml* in your text editor of choice. It should look similar to the
-code in Listing 1-2.
+เปิด *Cargo.toml* ในโปรแกรมเอดิเตอร์ที่คุณเลือก 
+มันควรจะมีลักษณะคล้ายกับโค้ดในรายการ 1-2
 
 <Listing number="1-2" file-name="Cargo.toml" caption="Contents of *Cargo.toml* generated by `cargo new`">
 
@@ -73,25 +66,21 @@ edition = "2021"
 
 </Listing>
 
-This file is in the [*TOML*][toml]<!-- ignore --> (*Tom’s Obvious, Minimal
-Language*) format, which is Cargo’s configuration format.
+ไฟล์นี้อยู่ในรูปแบบ [*TOML*][toml] (*Tom's Obvious, Minimal Language*) ซึ่งเป็นรูปแบบการกำหนดค่าของ Cargo
 
-The first line, `[package]`, is a section heading that indicates that the
-following statements are configuring a package. As we add more information to
-this file, we’ll add other sections.
+บรรทัดแรก `[package]` เป็นหัวข้อส่วนที่บ่งชี้ว่าคำสั่งต่อไปนี้กำลังกำหนดค่าแพ็คเกจ เมื่อเราเพิ่มข้อมูลเพิ่มเติมลงในไฟล์นี้ 
+เราจะเพิ่มส่วนอื่นๆ
 
-The next three lines set the configuration information Cargo needs to compile
-your program: the name, the version, and the edition of Rust to use. We’ll talk
-about the `edition` key in [Appendix E][appendix-e]<!-- ignore -->.
+สามบรรทัดถัดไปตั้งค่าข้อมูลการกำหนดค่าที่ Cargo ต้องการเพื่อคอมไพล์โปรแกรมของคุณ: 
+ชื่อ เวอร์ชัน และ edition ของ Rust ที่จะใช้ เราจะพูดถึงคีย์ `edition` ใน [ภาคผนวก E][appendix-e]
 
-The last line, `[dependencies]`, is the start of a section for you to list any
-of your project’s dependencies. In Rust, packages of code are referred to as
-*crates*. We won’t need any other crates for this project, but we will in the
-first project in Chapter 2, so we’ll use this dependencies section then.
+บรรทัดสุดท้าย `[dependencies]` เป็นจุดเริ่มต้นของส่วนที่คุณจะระบุ dependencies ของโปรเจกต์ของคุณ 
+ใน Rust แพ็คเกจของโค้ดถูกเรียกว่า *crates* เราจะไม่ต้องการ crates อื่นๆ สำหรับโปรเจกต์นี้ 
+แต่เราจะใช้ในโปรเจกต์แรกในบทที่ 2 ดังนั้นเราจะใช้ส่วน dependencies นี้ในตอนนั้น
 
-Now open *src/main.rs* and take a look:
+ตอนนี้เปิด *src/main.rs* และดู:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">ชื่อไฟล์: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -99,27 +88,23 @@ fn main() {
 }
 ```
 
-Cargo has generated a “Hello, world!” program for you, just like the one we
-wrote in Listing 1-1! So far, the differences between our project and the
-project Cargo generated are that Cargo placed the code in the *src* directory
-and we have a *Cargo.toml* configuration file in the top directory.
+Cargo ได้สร้างโปรแกรม "Hello, world!" ให้คุณ เหมือนกับที่เราเขียนในรายการ 1-1! 
+จนถึงตอนนี้ความแตกต่างระหว่างโปรเจกต์ของเรากับโปรเจกต์ที่ Cargo สร้าง 
+คือ Cargo วางโค้ดไว้ในไดเรกทอรี *src* และเรามีไฟล์การกำหนดค่า *Cargo.toml* ในไดเรกทอรีบนสุด
 
-Cargo expects your source files to live inside the *src* directory. The
-top-level project directory is just for README files, license information,
-configuration files, and anything else not related to your code. Using Cargo
-helps you organize your projects. There’s a place for everything, and
-everything is in its place.
+Cargo คาดหวังให้ไฟล์ต้นฉบับของคุณอยู่ภายในไดเรกทอรี *src* 
+ไดเรกทอรีโปรเจกต์ระดับบนสุดมีไว้สำหรับไฟล์ README ข้อมูลใบอนุญาต (license information) ไฟล์การกำหนดค่า 
+และสิ่งอื่นๆ ที่ไม่เกี่ยวข้องกับโค้ดของคุณ 
+การใช้ Cargo ช่วยให้คุณจัดระเบียบโปรเจกต์ของคุณ มีที่สำหรับทุกอย่าง และทุกอย่างอยู่ในที่ของมัน
 
-If you started a project that doesn’t use Cargo, as we did with the “Hello,
-world!” project, you can convert it to a project that does use Cargo. Move the
-project code into the *src* directory and create an appropriate *Cargo.toml*
-file.
+ถ้าคุณเริ่มโปรเจกต์ที่ไม่ใช้ Cargo เหมือนที่เราทำกับโปรเจกต์ "Hello, world!" 
+คุณสามารถแปลงมันให้เป็นโปรเจกต์ที่ใช้ Cargo ได้ 
+โดยย้ายโค้ดของโปรเจกต์ไปยังไดเรกทอรี *src* และสร้างไฟล์ *Cargo.toml* ที่เหมาะสม
 
-### Building and Running a Cargo Project
+### การสร้างและรันโปรเจกต์ Cargo
 
-Now let’s look at what’s different when we build and run the “Hello, world!”
-program with Cargo! From your *hello_cargo* directory, build your project by
-entering the following command:
+ตอนนี้มาดูว่ามีอะไรแตกต่างเมื่อเราสร้างและรันโปรแกรม "Hello, world!" ด้วย Cargo! 
+จากไดเรกทอรี *hello_cargo* ของคุณ สร้างโปรเจกต์ของคุณโดยป้อนคำสั่งต่อไปนี้:
 
 ```console
 $ cargo build
@@ -127,26 +112,22 @@ $ cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs
 ```
 
-This command creates an executable file in *target/debug/hello_cargo* (or
-*target\debug\hello_cargo.exe* on Windows) rather than in your current
-directory. Because the default build is a debug build, Cargo puts the binary in
-a directory named *debug*. You can run the executable with this command:
+คำสั่งนี้สร้างไฟล์ executable ใน *target/debug/hello_cargo* (หรือ *target\debug\hello_cargo.exe* บน Windows) 
+แทนที่จะอยู่ในไดเรกทอรีปัจจุบันของคุณ เนื่องจากค่าเริ่มต้นของการสร้างเป็นการสร้างแบบดีบัก 
+Cargo จึงใส่ไบนารีไว้ในไดเรกทอรีชื่อ *debug* คุณสามารถรันไฟล์ executable ได้ด้วยคำสั่งนี้:
 
 ```console
 $ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
 Hello, world!
 ```
 
-If all goes well, `Hello, world!` should print to the terminal. Running `cargo
-build` for the first time also causes Cargo to create a new file at the top
-level: *Cargo.lock*. This file keeps track of the exact versions of
-dependencies in your project. This project doesn’t have dependencies, so the
-file is a bit sparse. You won’t ever need to change this file manually; Cargo
-manages its contents for you.
+ถ้าทุกอย่างเป็นไปด้วยดี `Hello, world!` ควรจะพิมพ์ออกมาที่เทอร์มินัล 
+การรัน `cargo build` เป็นครั้งแรกยังทำให้ Cargo สร้างไฟล์ใหม่ที่ระดับบนสุด: *Cargo.lock* 
+ไฟล์นี้ติดตามเวอร์ชันที่แน่นอนของ dependencies ในโปรเจกต์ของคุณ โปรเจกต์นี้ไม่มี dependencies 
+ดังนั้นไฟล์จึงค่อนข้างว่างเปล่า คุณไม่จำเป็นต้องแก้ไขไฟล์นี้ด้วยตนเอง Cargo จัดการเนื้อหาให้คุณ
 
-We just built a project with `cargo build` and ran it with
-`./target/debug/hello_cargo`, but we can also use `cargo run` to compile the
-code and then run the resultant executable all in one command:
+เราเพิ่งสร้างโปรเจกต์ด้วย `cargo build` และรันมันด้วย `./target/debug/hello_cargo` 
+แต่เราสามารถใช้ `cargo run` เพื่อคอมไพล์โค้ดและจากนั้นรันไฟล์ที่สามารถเรียกใช้งานได้ทั้งหมดในคำสั่งเดียว
 
 ```console
 $ cargo run
@@ -155,15 +136,12 @@ $ cargo run
 Hello, world!
 ```
 
-Using `cargo run` is more convenient than having to remember to run `cargo
-build` and then use the whole path to the binary, so most developers use `cargo
-run`.
+การใช้ `cargo run` สะดวกกว่าการต้องจำว่าต้องรัน `cargo build` และจากนั้นใช้เส้นทางเต็มไปยังไบนารี 
+ดังนั้นนักพัฒนาส่วนใหญ่จึงใช้ `cargo run`
 
-Notice that this time we didn’t see output indicating that Cargo was compiling
-`hello_cargo`. Cargo figured out that the files hadn’t changed, so it didn’t
-rebuild but just ran the binary. If you had modified your source code, Cargo
-would have rebuilt the project before running it, and you would have seen this
-output:
+สังเกตว่าครั้งนี้เราไม่เห็นผลลัพธ์ที่บ่งบอกว่า Cargo กำลังคอมไพล์ `hello_cargo` 
+Cargo พบว่าไฟล์ไม่มีการเปลี่ยนแปลง จึงไม่ได้สร้างใหม่แต่เพียงแค่รันไบนารี 
+ถ้าคุณได้แก้ไขซอร์สโค้ดของคุณ Cargo จะสร้างโปรเจกต์ใหม่ก่อนที่จะรัน และคุณจะเห็นผลลัพธ์นี้:
 
 ```console
 $ cargo run
@@ -173,8 +151,8 @@ $ cargo run
 Hello, world!
 ```
 
-Cargo also provides a command called `cargo check`. This command quickly checks
-your code to make sure it compiles but doesn’t produce an executable:
+Cargo ยังมีคำสั่งที่เรียกว่า `cargo check` 
+คำสั่งนี้จะตรวจสอบโค้ดของคุณอย่างรวดเร็วเพื่อให้แน่ใจว่าสามารถคอมไพล์ได้ แต่ไม่ได้สร้างไฟล์ที่สามารถเรียกใช้งานได้:executable
 
 ```console
 $ cargo check
@@ -182,52 +160,45 @@ $ cargo check
     Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs
 ```
 
-Why would you not want an executable? Often, `cargo check` is much faster than
-`cargo build` because it skips the step of producing an executable. If you’re
-continually checking your work while writing the code, using `cargo check` will
-speed up the process of letting you know if your project is still compiling! As
-such, many Rustaceans run `cargo check` periodically as they write their
-program to make sure it compiles. Then they run `cargo build` when they’re
-ready to use the executable.
+ทำไมคุณถึงไม่ต้องการไฟล์ executable? บ่อยครั้งที่ `cargo check` เร็วกว่า `cargo build` มาก
+เพราะมันข้ามขั้นตอนการสร้างไฟล์ที่สามารถเรียกใช้งานได้ ถ้าคุณตรวจสอบงานของคุณอย่างต่อเนื่องในขณะที่เขียนโค้ด 
+การใช้ `cargo check` จะช่วยเร่งกระบวนการในการแจ้งให้คุณทราบว่าโปรเจกต์ของคุณยังคงคอมไพล์ได้อยู่หรือไม่! 
+ด้วยเหตุนี้ นักพัฒนา Rust จำนวนมากจึงรัน `cargo check` เป็นระยะๆ ขณะที่เขียนโปรแกรมเพื่อให้แน่ใจว่ามันยังคอมไพล์ได้ 
+จากนั้นพวกเขาจะรัน `cargo build` เมื่อพร้อมที่จะใช้ไฟล์ที่สามารถเรียกใช้งานได้
 
-Let’s recap what we’ve learned so far about Cargo:
+มาสรุปสิ่งที่เราได้เรียนรู้เกี่ยวกับ Cargo จนถึงตอนนี้:
 
-* We can create a project using `cargo new`.
-* We can build a project using `cargo build`.
-* We can build and run a project in one step using `cargo run`.
-* We can build a project without producing a binary to check for errors using
-  `cargo check`.
-* Instead of saving the result of the build in the same directory as our code,
-  Cargo stores it in the *target/debug* directory.
+* เราสามารถสร้างโปรเจกต์โดยใช้ `cargo new`
+* เราสามารถสร้างโปรเจกต์โดยใช้ `cargo build`
+* เราสามารถสร้างและรันโปรเจกต์ในขั้นตอนเดียวโดยใช้ `cargo run`
+* เราสามารถสร้างโปรเจกต์โดยไม่สร้างไบนารีเพื่อตรวจสอบข้อผิดพลาดโดยใช้ `cargo check`
+* แทนที่จะบันทึกผลลัพธ์ของการสร้างในไดเรกทอรีเดียวกับโค้ดของเรา 
+  Cargo เก็บมันไว้ในไดเรกทอรี *target/debug*
 
-An additional advantage of using Cargo is that the commands are the same no
-matter which operating system you’re working on. So, at this point, we’ll no
-longer provide specific instructions for Linux and macOS versus Windows.
+ข้อดีเพิ่มเติมของการใช้ Cargo คือคำสั่งเหมือนกันไม่ว่าคุณจะทำงานบนระบบปฏิบัติการใด 
+ดังนั้น ณ จุดนี้ เราจะไม่ให้คำแนะนำเฉพาะสำหรับ Linux และ macOS เทียบกับ Windows อีกต่อไป
 
-### Building for Release
+### การสร้างสำหรับการเผยแพร่
 
-When your project is finally ready for release, you can use `cargo build
---release` to compile it with optimizations. This command will create an
-executable in *target/release* instead of *target/debug*. The optimizations
-make your Rust code run faster, but turning them on lengthens the time it takes
-for your program to compile. This is why there are two different profiles: one
-for development, when you want to rebuild quickly and often, and another for
-building the final program you’ll give to a user that won’t be rebuilt
-repeatedly and that will run as fast as possible. If you’re benchmarking your
-code’s running time, be sure to run `cargo build --release` and benchmark with
-the executable in *target/release*.
+เมื่อโปรเจกต์ของคุณพร้อมสำหรับการเผยแพร่ในที่สุด คุณสามารถใช้ `cargo build --release` 
+เพื่อคอมไพล์ด้วยการเพิ่มประสิทธิภาพ คำสั่งนี้จะสร้างไฟล์ executable ใน *target/release* แทนที่จะเป็น *target/debug* 
+การเพิ่มประสิทธิภาพทำให้โค้ด Rust ของคุณทำงานเร็วขึ้น 
+แต่การเปิดใช้งานจะทำให้เวลาที่ใช้ในการคอมไพล์โปรแกรมของคุณนานขึ้น 
+นี่คือเหตุผลที่มีโปรไฟล์สองแบบที่แตกต่างกัน: หนึ่งสำหรับการพัฒนาเมื่อคุณต้องการสร้างใหม่อย่างรวดเร็วและบ่อยครั้ง 
+และอีกหนึ่งสำหรับการสร้างโปรแกรมสุดท้ายที่คุณจะให้ผู้ใช้ซึ่งจะไม่ถูกสร้างใหม่ซ้ำๆ และจะทำงานเร็วที่สุดเท่าที่จะเป็นไปได้ 
+ถ้าคุณกำลังวัดเวลาการทำงานของโค้ดของคุณ ให้แน่ใจว่าได้รัน `cargo build --release` 
+และทำการวัดประสิทธิภาพด้วยไฟล์ executable ใน *target/release*
 
 ### Cargo as Convention
 
-With simple projects, Cargo doesn’t provide a lot of value over just using
-`rustc`, but it will prove its worth as your programs become more intricate.
-Once programs grow to multiple files or need a dependency, it’s much easier to
-let Cargo coordinate the build.
+สำหรับโปรเจกต์ง่ายๆ Cargo อาจไม่ได้มีคุณค่ามากนักเมื่อเทียบกับการใช้ `rustc` 
+แต่มันจะแสดงคุณค่าเมื่อโปรแกรมของคุณซับซ้อนขึ้น 
+เมื่อโปรแกรมเติบโตเป็นหลายไฟล์หรือต้องการ dependency การปล่อยให้ Cargo ประสานงานการสร้างจะง่ายกว่ามาก
 
-Even though the `hello_cargo` project is simple, it now uses much of the real
-tooling you’ll use in the rest of your Rust career. In fact, to work on any
-existing projects, you can use the following commands to check out the code
-using Git, change to that project’s directory, and build:
+แม้ว่าโปรเจกต์ `hello_cargo` จะเรียบง่าย it now uses much of the real
+tooling you’ll use in the rest of your Rust career. 
+ในความเป็นจริง เพื่อทำงานกับโปรเจกต์ที่มีอยู่ คุณสามารถใช้คำสั่งต่อไปนี้เพื่อตรวจสอบโค้ดโดยใช้ Git
+เปลี่ยนไปยังไดเรกทอรีของโปรเจกต์นั้น และสร้าง:
 
 ```console
 $ git clone example.org/someproject
@@ -235,23 +206,21 @@ $ cd someproject
 $ cargo build
 ```
 
-For more information about Cargo, check out [its documentation][cargo].
+สำหรับข้อมูลเพิ่มเติมเกี่ยวกับ Cargo ให้ตรวจสอบ[เอกสารคู่มือ](https://doc.rust-lang.org/cargo/)
 
-## Summary
+## สรุป
 
-You’re already off to a great start on your Rust journey! In this chapter,
-you’ve learned how to:
+คุณได้เริ่มต้นการเดินทางในภาษา Rust อย่างยอดเยี่ยมแล้ว! ในบทนี้ คุณจะได้เรียนรู้:
 
-* Install the latest stable version of Rust using `rustup`
-* Update to a newer Rust version
-* Open locally installed documentation
-* Write and run a “Hello, world!” program using `rustc` directly
-* Create and run a new project using the conventions of Cargo
+* การติดตั้ง Rust เวอร์ชันเสถียรล่าสุดโดยใช้ `rustup`
+* การอัปเดตเป็น Rust เวอร์ชันใหม่กว่า
+* วิธีเปิดเอกสารคู่มือที่ติดตั้งเอาไว้ในเครื่อง
+* เขียนและรันโปรแกรม "Hello, world!" โดยใช้ `rustc` โดยตรง
+* สร้างและรันโปรเจกต์ใหม่โดยใช้ conventions of Cargo
 
-This is a great time to build a more substantial program to get used to reading
-and writing Rust code. So, in Chapter 2, we’ll build a guessing game program.
-If you would rather start by learning how common programming concepts work in
-Rust, see Chapter 3 and then return to Chapter 2.
+นี่เป็นเวลาที่ดีในการสร้างโปรแกรมที่มีเนื้อหามากขึ้นเพื่อให้คุ้นเคยกับการอ่านและเขียนโค้ด Rust 
+ดังนั้น ในบทที่ 2 เราจะสร้างโปรแกรมเกมทายตัวเลข 
+ถ้าคุณต้องการเริ่มต้นด้วยการเรียนรู้วิธีการที่แนวคิดการเขียนโปรแกรมทั่วไปทำงานใน Rust ให้ดูบทที่ 3 และจากนั้นกลับมาที่บทที่ 2
 
 [installation]: ch01-01-installation.html#installation
 [toml]: https://toml.io
